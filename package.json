@@ -12,8 +12,8 @@
     "react-scripts": "3.2.0"
   },
   "scripts": {
-    "start": "REACT_APP_DEV_ENV=production react-scripts start",
-    "dev": "REACT_APP_DEV_ENV=development react-scripts start",
+    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
