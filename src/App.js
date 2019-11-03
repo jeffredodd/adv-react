@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'barecss';
+import LayoutEx from './views/layoutEx';
+import MouseEx from './views/mouseEx';
+import LayoutProvider from './layout/layoutService';
+import RenderPropsEx from './table/renderPropsEx';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const layoutEnabled = urlParams.get('layoutEnabled') === 'false' ? false : true;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <LayoutProvider enabled={layoutEnabled}>
+        <Switch>
+          <Route path="/layoutEx" component={LayoutEx} />
+          <Route path="/mouseEx" component={MouseEx} /> 
+          <Route path="/renderPropsEx" component={RenderPropsEx} /> 
+        </Switch>
+      </LayoutProvider>
+    </Router>
   );
 }
 
