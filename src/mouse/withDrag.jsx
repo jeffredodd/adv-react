@@ -9,8 +9,8 @@ export default function WithDrag ({children}) {
         if(drag) {
             drag.destroy();
         }
-
         drag = new Draggable(element.current, () => {});
+
     })
 
     return (

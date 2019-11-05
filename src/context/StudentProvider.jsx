@@ -12,10 +12,9 @@ export function StudentProvider({children}) {
     ])
 
     const updateRecord = (id, value) => {
-        let data = this.state.students;
         if (value) {
-            data[id - 1].grade = value;
-            changeGrade([...data]);
+            students[id - 1].grade = value;
+            changeGrade([...students]);
         }
     }
 
