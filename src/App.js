@@ -1,12 +1,12 @@
 import React from 'react';
 import 'barecss';
-import LayoutEx from './views/layoutEx';
-import MouseEx from './views/mouseEx';
+import Example1 from './views/example1';
+import Example2 from './views/example2';
 import LayoutProvider from './layout/layoutService';
-import RenderPropsInputEx from './views/renderPropsInputEx';
-import RenderPropsSelectEx from './views/renderPropsSelectEx';
-import ContextEx from './views/contextEx';
-import {StudentProvider} from './context/StudentProvider';
+import Example3a from './views/example3a';
+import Example3b from './views/example3b';
+import Example4 from './views/example4';
+import {StudentProvider} from './context/studentProvider';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,19 +14,16 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const layoutEnabled = urlParams.get('layoutEnabled') === 'false' ? false : true;
-
   return (
     <StudentProvider>
       <Router>
-        <LayoutProvider enabled={layoutEnabled}>
+        <LayoutProvider>
           <Switch>
-            <Route path="/layoutEx" component={LayoutEx} />
-            <Route path="/mouseEx" component={MouseEx} /> 
-            <Route path="/renderPropsInputEx" component={RenderPropsInputEx} /> 
-            <Route path="/renderPropsSelectEx" component={RenderPropsSelectEx} /> 
-            <Route path="/contextEx" component={ContextEx} /> 
+            <Route path="/example1" component={Example1} />
+            <Route path="/example2" component={Example2} /> 
+            <Route path="/example3a" component={Example3a} /> 
+            <Route path="/example3b" component={Example3b} /> 
+            <Route path="/example4" component={Example4} /> 
           </Switch>
         </LayoutProvider>
       </Router>

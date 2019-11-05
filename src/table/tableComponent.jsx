@@ -7,7 +7,7 @@ export default function TableComponent({ changeGradeRender }) {
     { id: 3, name: 'Greg', grade: 5 },
     { id: 4, name: 'Jenna', grade: 4 },
     { id: 5, name: 'Dylan', grade: 7 },
-    { id: 5, name: 'Ryan', grade: 2 }
+    { id: 6, name: 'Ryan', grade: 2 }
   ]);
 
   const updateRecord = (id, value) => {
@@ -21,20 +21,28 @@ export default function TableComponent({ changeGradeRender }) {
 
   return (
     <table>
-      <tr>
-        <th>Name</th>
-        <th>Grade</th>
-        <th>Action</th>
-      </tr>
-      {students.map(r => {
-        return (
-          <tr>
-            <td>{r.name}</td>
-            <td>{r.grade}</td>
-            <td>{changeGradeRender(r.grade, (e) => { changeGrade(updateRecord(r.id, e.target.value)) })}</td>
-          </tr>
-        )
-      })}
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {students.map(r => {
+          return (
+            <tr key={'row-' + r.id}>
+              <td key={'name-' + r.id}>{r.name}</td>
+              <td key={'grade-' + r.id}>{r.grade}</td>
+              <td key={'change-' + r.id}>
+                {changeGradeRender(r.grade, (e) => {
+                  changeGrade(updateRecord(r.id, e.target.value)) 
+                })}
+              </td>
+            </tr>
+          )
+        })}
+      </tbody>
     </table>
   )
 }

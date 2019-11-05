@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StudentContext } from './StudentContext';
+import { StudentContext } from './studentContext';
 
 export function StudentProvider({children}) {
     const [students, changeGrade] = useState([
@@ -8,7 +8,7 @@ export function StudentProvider({children}) {
         { id: 3, name: 'Greg', grade: 5 },
         { id: 4, name: 'Jenna', grade: 4 },
         { id: 5, name: 'Dylan', grade: 7 },
-        { id: 5, name: 'Ryan', grade: 2 }
+        { id: 6, name: 'Ryan', grade: 2 }
     ])
 
     const updateRecord = (id, value) => {

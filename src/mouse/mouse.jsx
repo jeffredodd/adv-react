@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Mouse(props) {
     const style = {
-        'font-size': '96px'
+        'fontSize': '128px'
     };
 
     return (

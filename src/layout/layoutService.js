@@ -2,41 +2,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function LayoutProvider({children, enabled}) {
-    if(!enabled) {
-        return children;
-    } else {
+    // Using a query parameter to simuate service status
+    const urlParams = new URLSearchParams(window.location.search);
+    const layoutEnabled = urlParams.get('layoutEnabled') === 'false' ? false : true;
+
+    try {
+        if(!layoutEnabled) { // Validate that service is active 
+            throw(layoutEnabled); // Throw if service isn't active
+        }
         return (
-            // Instead of static content, imagine this is a prebuild component integrated w/a LayoutService
+            // If service is active then we serve layout
             <React.Fragment>
                 <header>
-                    <h1>React Concept Demonstration</h1>
+                    <h2>React Concept Demonstration</h2>
                 </header>
                 <nav>
-                    <ul>
+                    <ul
+                        style={{
+                            textAlign: 'left'
+                        }}>
                         <li>
-                            <Link to='/layoutEx'>Dependency Injection</Link>
+                            <Link to='/example1'>Example 1</Link>
                         </li>
                         <li>
-                            <Link to='/mouseEx'>Higher Order Component</Link>
+                            <Link to='/example2'>Example 2</Link>
                         </li>
                         <li>
-                            <Link to='/renderPropsInputEx'>Render Props (Input)</Link>
+                            <Link to='/example3a'>Example 3a</Link>
                         </li>
                         <li>
-                            <Link to='/renderPropsSelectEx'>Render Props (Select)</Link>
+                            <Link to='/example3b'>Example 3b</Link>
                         </li>
                         <li>
-                            <Link to='/contextEx'>Context Example</Link>
+                            <Link to='/example4'>Example 4</Link>
                         </li>
                     </ul>
                 </nav>
                 <main>
                     {children}
                 </main>
-                <footer>
-                    My Footer
-                </footer>
             </React.Fragment>
         )
+    } catch (e) {
+        // Don't break view if layout is down
+        return children;
     }
 }
