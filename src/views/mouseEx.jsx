@@ -2,7 +2,7 @@ import React from 'react';
 import WithDrag from '../mouse/withDrag';
 import Mouse from '../mouse/mouse';
 
-function App() {
+function MouseEx() {
     return (
         <WithDrag>
             <Mouse />
@@ -10,4 +10,4 @@ function App() {
     );
 }
 
-export default App;
+export default MouseEx;

@@ -1,25 +1,22 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import Draggable from 'draggable';
 
-export default class WithDrag extends React.Component {
-    constructor(props) {
-        super(props);
-        this.element = null;
-    }
+export default function WithDrag ({children}) {
+    let element = useRef(null);
+    let drag;
 
-    componentDidMount() {
-        new Draggable(this.element, () => {});
-    }
+    useEffect(() => {
+        if(drag) {
+            drag.destroy();
+        }
 
-    render() {
-        const {children} = this.props;
-        return (
-            <span
-                ref={(e => {
-                    this.element = e;
-                })}>
-                {children}
-            </span>
-        )
-    }
+        drag = new Draggable(element.current, () => {});
+    })
+
+    return (
+        <div 
+            ref={element}>
+            {children}
+        </div>
+    )
 }

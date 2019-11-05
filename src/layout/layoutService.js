@@ -20,7 +20,13 @@ export default function LayoutProvider({children, enabled}) {
                             <Link to='/mouseEx'>Higher Order Component</Link>
                         </li>
                         <li>
-                            <Link to='/renderPropsEx'>Render Props</Link>
+                            <Link to='/renderPropsInputEx'>Render Props (Input)</Link>
+                        </li>
+                        <li>
+                            <Link to='/renderPropsSelectEx'>Render Props (Select)</Link>
+                        </li>
+                        <li>
+                            <Link to='/contextEx'>Context Example</Link>
                         </li>
                     </ul>
                 </nav>

@@ -1,55 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class TableComponent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [
-          { id: 1, name: 'Brad', grade: 6 },
-          { id: 2, name: 'CJ', grade: 8 },
-          { id: 3, name: 'Greg', grade: 5 },
-          { id: 4, name: 'Jenna', grade: 4 },
-          { id: 5, name: 'Dylan', grade: 7 },
-          { id: 5, name: 'Ryan', grade: 2 }
-      ]
-    };
-  }
+export default function TableComponent({ changeGradeRender }) {
+  const [students, changeGrade] = useState([
+    { id: 1, name: 'Brad', grade: 6 },
+    { id: 2, name: 'CJ', grade: 8 },
+    { id: 3, name: 'Greg', grade: 5 },
+    { id: 4, name: 'Jenna', grade: 4 },
+    { id: 5, name: 'Dylan', grade: 7 },
+    { id: 5, name: 'Ryan', grade: 2 }
+  ]);
 
-  changeGrade = (id, value) => {
-    let data = this.state.data;
-    if(value) {
-      data[id-1].grade = value;
-      this.setState({data: data});
+  const updateRecord = (id, value) => {
+    let data = students;
+    if (value) {
+      data[id - 1].grade = value;
+      return [...data]; //Must create new array or rerender wont occur
     }
+    return data;
   }
 
-  render() {
-    const tableRows = this.state.data.map(r => {
+  return (
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Grade</th>
+        <th>Action</th>
+      </tr>
+      {students.map(r => {
         return (
-            <tr>
-                <td>{r.name}</td>
-                <td>{r.grade}</td>
-                <td>{this.props.changeGradeRender(r.grade, (e) => { this.changeGrade(r.id, e.target.value)})}</td>
-            </tr>
+          <tr>
+            <td>{r.name}</td>
+            <td>{r.grade}</td>
+            <td>{changeGradeRender(r.grade, (e) => { changeGrade(updateRecord(r.id, e.target.value)) })}</td>
+          </tr>
         )
-    })
-
-    return (
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>Action</th>
-            </tr>
-            {tableRows}
-        </table>
-    )
-  }
-
+      })}
+    </table>
+  )
 }
-
-TableComponent.defaultProps = {
-  changeGradeRender: () => {}
-}
-
-export default TableComponent;
